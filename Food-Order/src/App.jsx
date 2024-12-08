@@ -1,12 +1,15 @@
 import Header from './Header'
-import Body from './Body'
+import { Outlet } from 'react-router-dom'
+import Menu from './Menu'
+
+
+
 function App() {
-
-
   return (
     <>
-   <Header/>
-   <Body/>
+      <Header/> 
+      <Outlet/>
+{/* <Menu/> */}
     </>
   )
 }

@@ -2,8 +2,8 @@ import React from 'react'
 
 const Shimmer = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
-      {[1, 2, 3].map((i) => (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-20">
+      {[1, 2, 3,4,5,6].map((i) => (
         <div key={i} className="bg-white rounded-lg p-4 shadow-md">
           <div className="rounded-lg w-80 h-48 object-cover bg-gray-200"></div>
           <div className="mt-4">

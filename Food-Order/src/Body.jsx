@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ResCard from './ResCard';
 import Shimmer from './Shimmer';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
   const [List, setList] = useState([]);
@@ -59,7 +60,7 @@ const Body = () => {
   return filteredRestaurants.length === 0 ? (<Shimmer /> ): (
     <div className="flex flex-col items-center mt-20 ml-14">
       <div>
-        <div className="flex gap-4 mb-4">
+        <div className="flex gap-4 mb-4 mt-5">
           <button onClick={FilterAll} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Filter All
           </button>
@@ -90,7 +91,7 @@ const Body = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto max-w-screen-lg">
           {   (
             filteredRestaurants.map((data) => (
-              <ResCard
+              <Link to={`/restaurant/${data?.info?.id}`} key={data?.info?.id}><ResCard
                 key={data?.info?.id || Math.random()}
                 name={data?.info?.name}
                 avgRating={data?.info?.avgRating}
@@ -98,7 +99,7 @@ const Body = () => {
                 costForTwo={data?.info?.costForTwo}
                 cuisines={data?.info?.cuisines}
                 sla={data?.info?.sla}
-              />
+              /></Link>
             ))
           )}
         </div>
