@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ResCard from './ResCard';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from './utils/useOnlineStatus';
 
 const Body = () => {
   const [List, setList] = useState([]);
@@ -54,6 +55,11 @@ const Body = () => {
     setFilteredRestaurants(newDataList);
   };
 
+  const onlineStatus=useOnlineStatus();
+if(onlineStatus===false){
+  return <h1 className='text-4xl text-center mt-20 text-black flex justify-center align-center'>Offline!!</h1>
+}
+
   if (loading) return <Shimmer />;
   console.log(filteredRestaurants);
 
@@ -88,7 +94,7 @@ const Body = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto max-w-screen-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto max-w-screen-lg h-full">
           {   (
             filteredRestaurants.map((data) => (
               <Link to={`/restaurant/${data?.info?.id}`} key={data?.info?.id}><ResCard
