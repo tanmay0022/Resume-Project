@@ -50,6 +50,16 @@ const Body = () => {
     setFilteredRestaurants(newDataList);
   };
 
+  const FilterFastDelivery = () => {
+    const newDataList = List?.filter(data => data?.info?.sla?.deliveryTime < 30) || [];
+    setFilteredRestaurants(newDataList);
+  };
+
+  const FilterBudget = () => {
+    const newDataList = List?.filter(data => data?.info?.costForTwo < "₹300") || [];
+    setFilteredRestaurants(newDataList);
+  };
+
   const ResetFilter = () => {
     const newDataList = List?.filter(data => data?.info?.avgRating > 0) || [];
     setFilteredRestaurants(newDataList);
@@ -64,22 +74,28 @@ if(onlineStatus===false){
   console.log(filteredRestaurants);
 
   return filteredRestaurants.length === 0 ? (<Shimmer /> ): (
-    <div className="flex flex-col items-center mt-20 ml-14">
-      <div>
-        <div className="flex gap-4 mb-4 mt-5">
-          <button onClick={FilterAll} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Filter All
+    <div className="container mx-auto px-4 mt-20">
+      <div className="flex justify-center mt-8">
+        <div className="flex gap-3 items-center flex-wrap my-6">
+          <button onClick={FilterAll} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
+            Ratings 4.0+
           </button>
-          <button onClick={ResetFilter} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-            Reset Filter
+          <button onClick={FilterFastDelivery} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
+            Fast Delivery
           </button>
-          <div>
+          <button onClick={FilterBudget} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
+            Budget Friendly
+          </button>
+          <button onClick={ResetFilter} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
+            ⛌
+          </button>
+          <div className="flex gap-2">
             <input
               type="text"
               placeholder="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              className="border border-gray-300 rounded-md px-3 py-2"
+              className="border-2 border-solid border-black rounded-lg px-3 py-1 bg-white text-black"
             />
             <button
               onClick={() => {
@@ -88,28 +104,31 @@ if(onlineStatus===false){
                 ) || [];
                 setFilteredRestaurants(filterData);
               }}
-              className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-white text-black font-bold border-solid border-black rounded-2xl py-0 px-3"
             >
               Search
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto max-w-screen-lg h-full">
-          {   (
-            filteredRestaurants.map((data) => (
-              <Link to={`/restaurant/${data?.info?.id}`} key={data?.info?.id}><ResCard
-                key={data?.info?.id || Math.random()}
-                name={data?.info?.name}
-                avgRating={data?.info?.avgRating}
-                cloudinaryImageId={data?.info?.cloudinaryImageId}
-                costForTwo={data?.info?.costForTwo}
-                cuisines={data?.info?.cuisines}
-                sla={data?.info?.sla}
-              /></Link>
-            ))
-          )}
-        </div>
       </div>
+      <div className='mx-36'>
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl ">
+        {   (
+          filteredRestaurants.map((data) => (
+            <Link to={`/restaurant/${data?.info?.id}`} key={data?.info?.id}><ResCard
+              key={data?.info?.id || Math.random()}
+              name={data?.info?.name}
+              avgRating={data?.info?.avgRating}
+              cloudinaryImageId={data?.info?.cloudinaryImageId}
+              cuisines={data?.info?.cuisines}
+              costForTwo={data?.info?.costForTwo}
+              sla={data?.info?.sla}
+            /></Link>
+          ))
+        )}
+      </div>
+      </div>
+      
     </div>
   );
 };

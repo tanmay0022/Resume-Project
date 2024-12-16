@@ -1,27 +1,34 @@
 import React from 'react';
 
-const ResCard = ({ name, avgRating, cloudinaryImageId, costForTwo, cuisines, sla }) => {
+const ResCard = ({ cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla }) => {
   const imageUrl = `https://media-assets.swiggy.com/swiggy/image/upload/${cloudinaryImageId}`;
 
   return (
-    <div className="bg-white rounded-lg p-4 shadow-md h-full flex flex-col">
-      <img 
-        className="rounded-lg w-full h-48 object-cover" 
-        src={imageUrl} 
-        alt={name}
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = 'https://via.placeholder.com/320x192?text=Restaurant+Image';
-        }}
-      />
-      <div className="mt-4 flex-grow">
-        <h3 className="text-xl font-bold text-black">{name}</h3>
-        <div className="flex items-center mt-2">
-          <span className="text-white bg-green-600 text-lg p-1">★ {avgRating}</span>
+    <div className="bg-white w-72 p-4 hover:scale-[0.98] transition-all duration-300">
+      <div className="relative">
+        <img 
+          className="rounded-xl w-[90%] h-44 object-cover" 
+          src={imageUrl} 
+          alt={name}
+          onError={(e) => {
+            e.target.src = "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/39cd5e4824e5c011ffaf56ddc39891e8";
+          }}
+        />
+        
+      </div>
+      <div className="mt-3">
+        <h3 className="text-lg font-bold text-gray-800 truncate">{name}</h3>
+        <div className="flex items-center mt-1 gap-1">
+          <span className="flex items-center gap-1">
+            <span className="text-white bg-green-600 text-sm px-2 py-0.5 rounded flex items-center gap-1">
+              <span>★</span>{avgRating}
+            </span>
+          </span>
+          <span className="text-gray-700">•</span>
+          <span className="text-gray-700">{sla?.slaString}</span>
         </div>
-        <p className="text-black mt-2 font-medium">{cuisines?.join(", ")}</p>
-        <p className="text-black mt-2">{costForTwo}</p>
-        <p className="text-black mt-2">{sla?.slaString}</p>
+        <p className="text-gray-500 text-sm mt-1 truncate">{cuisines?.join(", ")}</p>
+        <p className="text-gray-500 text-sm">{costForTwo}</p>
       </div>
     </div>
   );
