@@ -4,10 +4,10 @@ const ResCard = ({ cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla
   const imageUrl = `https://media-assets.swiggy.com/swiggy/image/upload/${cloudinaryImageId}`;
 
   return (
-    <div className="bg-white w-72 p-4 hover:scale-[0.98] transition-all duration-300">
+    <div className=" w-72 p-4 hover:scale-[0.98] transition-all  duration-300">
       <div className="relative">
         <img 
-          className="rounded-xl w-[90%] h-44 object-cover" 
+          className="rounded-xl w-[95%] h-44 object-cover" 
           src={imageUrl} 
           alt={name}
           onError={(e) => {

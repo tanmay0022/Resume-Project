@@ -92,10 +92,10 @@ if(onlineStatus===false){
           <div className="flex gap-2">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search for Restaurants"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              className="border-2 border-solid border-black rounded-lg px-3 py-1 bg-white text-black"
+              className="border border-solid border-black rounded-lg px-3 py-1 bg-slate-200 text-black"
             />
             <button
               onClick={() => {
@@ -112,7 +112,7 @@ if(onlineStatus===false){
         </div>
       </div>
       <div className='mx-36'>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl ">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-16 max-w-full ">
         {   (
           filteredRestaurants.map((data) => (
             <Link to={`/restaurant/${data?.info?.id}`} key={data?.info?.id}><ResCard
