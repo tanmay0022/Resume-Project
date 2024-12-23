@@ -26,10 +26,20 @@ const Menu = () => {
       // Find the menu category card
       const menuCategory = cards.find(card => 
         card?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+        console.log(cards.find(card => 
+          card?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+        
       
       // Find the actual menu items from the categories
       const menuItems = menuCategory?.find(card => 
         card?.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory')?.card?.card?.itemCards;
+
+        
+        
+
+        
+        
 
       // console.log("Menu Items:", menuItems);
       setmenu(menuItems || []);
@@ -39,15 +49,17 @@ const Menu = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 ml-40 mt-20">
-      <div className="menu p-8 max-w-4xl w-[80%] mx-auto bg-white shadow-lg rounded-lg my-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2 text-center">{restaurant?.name}</h1>
+   <div >
+     <div className="min-h-screen w-[80%] flex  justify-center mx-auto  mt-24">
+      <div className="menu p-8 max-w-[80%] w-[100%] mx-auto  shadow-lg rounded-lg my-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2 text-center ">{restaurant?.name}</h1>
         <div className="text-sm text-gray-600 mb-4 text-center">
           <p>{restaurant?.cuisines?.join(", ")}</p>
           <p>{restaurant?.areaName}, {restaurant?.city}</p>
         </div>
-        <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">Menu</h2>
-        <div className="menu-items space-y-4">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center ">Menu</h2>
+        {/* {<h3 className="text-lg font-semibold text-gray-800 mb-4 text-start mt-5 bg-gray-500 w-fit px-4 py-2 rounded">Recomended</h3>} */}
+        {<div className="menu-items space-y-4">
           {menu?.map((item) => (
             <div key={item?.card?.info?.id} className="menu-item flex justify-between items-center p-4 border-b hover:shadow-lg transition-all">
               <div className="flex-1 pr-4">
@@ -82,9 +94,10 @@ const Menu = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> }
       </div>
     </div>
+   </div>
   )
 }
 

@@ -4,8 +4,12 @@ import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from './utils/useOnlineStatus';
 
+import { FaSearch } from 'react-icons/fa';
+
 const Body = () => {
   const [List, setList] = useState([]);
+  const [count,setcount]=useState("");
+  
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,20 +48,30 @@ const Body = () => {
       setLoading(false);
     }
   };
+  const HandleCount = (increment = true) => {
+    setcount(prevCount => increment ? prevCount + 1 : prevCount - 1);
+  }
+  const HandleREQandCOUNT=()=>{
+    ResetFilter();
+    HandleCount(false); 
+  }
 
   const FilterAll = () => {
     const newDataList = List?.filter(data => data?.info?.avgRating > 4.0) || [];
     setFilteredRestaurants(newDataList);
+    HandleCount(true);
   };
 
   const FilterFastDelivery = () => {
     const newDataList = List?.filter(data => data?.info?.sla?.deliveryTime < 30) || [];
     setFilteredRestaurants(newDataList);
+    HandleCount(true);
   };
 
   const FilterBudget = () => {
     const newDataList = List?.filter(data => data?.info?.costForTwo < "₹300") || [];
     setFilteredRestaurants(newDataList);
+    HandleCount(true);
   };
 
   const ResetFilter = () => {
@@ -74,28 +88,32 @@ if(onlineStatus===false){
   console.log(filteredRestaurants);
 
   return filteredRestaurants.length === 0 ? (<Shimmer /> ): (
-    <div className="container mx-auto px-4 mt-20">
-      <div className="flex justify-center mt-8">
+    <div className="container w-full px-auto mt-9  mx-20 ">
+      <div className="text-2xl ml-[160px] font-bold text-[#02060c]  text-start  mt-28 w-fit  "> 
+      Restaurants with online food delivery in Haridwar
+      </div>
+      
+      <div className="flex ml-[160px] mt-[2px]">
         <div className="flex gap-3 items-center flex-wrap my-6">
-          <button onClick={FilterAll} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
+          <button onClick={FilterAll} className="bg-white py-1   font-gilroy   text-gray-900  font-bold border-solid border-black rounded-2xl  px-3 text-[14px]  ">
             Ratings 4.0+
           </button>
-          <button onClick={FilterFastDelivery} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
+          <button onClick={FilterFastDelivery} className="bg-white py-1 font-gilroy text-gray-900  font-bold border-solid border-black rounded-2xl px-3 text-[14px]">
             Fast Delivery
           </button>
-          <button onClick={FilterBudget} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
+          <button onClick={FilterBudget} className="bg-white py-1 font-gilroy text-gray-900  font-bold border-solid border-black rounded-2xl px-3 text-[14px]">
             Budget Friendly
           </button>
-          <button onClick={ResetFilter} className="bg-white py-1 text-black font-bold border-solid border-black rounded-2xl px-3">
-            ⛌
+          <button onClick={HandleREQandCOUNT}  className="bg-white py-0 text-black font-bold border-solid border-black rounded-2xl px-3">
+            ⛌{count}
           </button>
-          <div className="flex gap-2">
+          <div className="flex gap-2 mx-auto">
             <input
               type="text"
               placeholder="Search for Restaurants"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              className="border border-solid border-black rounded-lg px-3 py-1 bg-slate-200 text-black"
+              className=" border-solid border-black rounded-2xl px-3 py-1 bg-[#f0f0f5] text-black w-fit"
             />
             <button
               onClick={() => {
@@ -104,15 +122,15 @@ if(onlineStatus===false){
                 ) || [];
                 setFilteredRestaurants(filterData);
               }}
-              className="bg-white text-black font-bold border-solid border-black rounded-2xl py-0 px-3"
+              className=" bg-white text-[14px] font-gilroy text-gray-900  font-bold  py-2 px-1 "
             >
-              Search
+              <FaSearch />
             </button>
           </div>
         </div>
       </div>
-      <div className='mx-36'>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-16 max-w-full ">
+      <div className='mx-24 '>
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 max-w-full mx-auto">
         {   (
           filteredRestaurants.map((data) => (
             <Link to={`/restaurant/${data?.info?.id}`} key={data?.info?.id}><ResCard
