@@ -7,7 +7,7 @@ const ResCard = ({ cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla
     <div className=" w-72  p-4 hover:scale-[0.98] transition-all  duration-300">
       <div className="relative">
         <img 
-          className="rounded-xl w-[97%] h-40 object-cover" 
+          className="rounded-xl w-[98%] h-40 object-cover" 
           src={imageUrl} 
           alt={name}
           onError={(e) => {
