@@ -104,8 +104,8 @@ if(onlineStatus===false){
           <button onClick={FilterBudget} className="bg-white py-1 font-gilroy text-gray-900  font-bold border-solid border-black rounded-2xl px-3 text-[14px]">
             Budget Friendly
           </button>
-          <button onClick={HandleREQandCOUNT}  className="bg-white py-0 text-black font-bold border-solid border-black rounded-2xl px-3">
-            ⛌{count}
+          <button onClick={ResetFilter}  className="bg-white py-0 text-black font-bold border-solid border-black rounded-2xl px-3">
+            ⛌
           </button>
           <div className="flex gap-2 mx-auto">
             <input

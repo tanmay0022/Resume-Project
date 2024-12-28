@@ -56,7 +56,7 @@ const Menu = () => {
       <div className="menu p-8 max-w-[80%] w-[100%] mx-auto  shadow-lg rounded-lg my-8">
 <div>
 <img 
-  className="w-64 h-52 object-cover rounded-t-lg flex justify-center mx-auto" 
+  className="w-[80%] h-52 object-cover rounded-t-lg flex justify-center mx-auto" 
   src={`${CDN_URL}fl_lossy,f_auto,q_auto,w_1024/${restaurant?.cloudinaryImageId}`} 
   alt={restaurant?.name}
   onError={(e) => console.log('Image load error:', e)}
