@@ -27,7 +27,7 @@ const Body = () => {
       );
 
       const json = await data.json();
-      console.log("API Response:", json); // Debug log
+      
       
       // Find the restaurant cards array from the response
       const cards = json?.data?.cards;

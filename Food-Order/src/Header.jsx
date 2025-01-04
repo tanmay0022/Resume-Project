@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState , useContext} from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./utils/useOnlineStatus";
+import UserContext from "./utils/UserContext";
+import { useSelector } from "react-redux";
 
 import { FaHome } from "react-icons/fa";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
+  const cartItems = useSelector((store) => store.cart.items);
+
+  const{ loggedInUser}= useContext(UserContext);
+  
+  
 
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   return (
@@ -40,12 +47,15 @@ const Header = () => {
                 to="/cart"
                 className="group-hover:text-orange-600 transition-all duration-300 text-black"
               >
-                Cart
+                Cart- ({cartItems.length})
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:text-orange-600"></span>
               </Link>
             </li>
             <li className="text-black font-medium">
               Status: {onlineStatus ? "🟢" : "🔴"}
+            </li>
+            <li className="text-black font-bold">
+             {loggedInUser ? loggedInUser: "Guest"}
             </li>
           </ul>
         </nav>

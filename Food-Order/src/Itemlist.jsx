@@ -1,7 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem, removeItem } from "./utils/cartSlice";
 
-const Itemlist = ({ items }) => {
-  console.log(items);
+const Itemlist = ({ items, isCart }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+
+  const handleRemoveItem = (item) => {
+    dispatch(removeItem(item));
+  };
 
   return (
     <div>
@@ -26,7 +36,7 @@ const Itemlist = ({ items }) => {
                   {item.card.info.name}
                 </h3>
               </div>
-              <div className="mt-1">
+              <div className="mt-1 text-black">
                 <span className="font-medium text-sm">
                   ₹
                   {item.card.info.price / 100 ||
@@ -34,7 +44,7 @@ const Itemlist = ({ items }) => {
                 </span>
               </div>
               <p className="mt-2 text-sm text-gray-500 leading-5">
-                {item.card.info.description}
+                {!isCart && item.card.info.description}
               </p>
             </div>
             <div className="flex flex-col items-end gap-2">
@@ -45,9 +55,29 @@ const Itemlist = ({ items }) => {
                   alt={item.card.info.name}
                 />
               )}
-              <button className="bg-white text-green-500 px-4 py-1 rounded-lg font-medium border border-gray-300 hover:shadow-md transition-all relative -mt-4 mr-4">
-                ADD
-              </button>
+              {isCart ? (
+                <div className="flex items-center gap-2 -mt-4 mr-4">
+                  <button
+                    className="px-3 py-1 rounded-lg font-medium border border-gray-300 hover:shadow-md transition-all bg-white text-orange-500"
+                    onClick={() => handleRemoveItem(item)}
+                  >
+                    −
+                  </button>
+                  <button
+                    className="px-3 py-1 rounded-lg font-medium border border-gray-300 hover:shadow-md transition-all bg-white text-orange-500"
+                    onClick={() => handleAddItem(item)}
+                  >
+                    +
+                  </button>
+                </div>
+              ) : (
+                <button
+                  className="bg-white text-green-500 px-4 py-1 rounded-lg font-medium border border-gray-300 hover:shadow-md transition-all relative -mt-4 mr-4"
+                  onClick={() => handleAddItem(item)}
+                >
+                  Add
+                </button>
+              )}
             </div>
           </div>
         );

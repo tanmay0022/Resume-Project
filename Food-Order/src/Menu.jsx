@@ -25,7 +25,7 @@ const Menu = () => {
       // Get restaurant info
       const restaurantInfo = cards.find(card => 
         card?.card?.card?.info)?.card?.card?.info;
-      console.log("Restaurant Info:", restaurantInfo); 
+      
       setRestaurant(restaurantInfo);
 
       // Find the menu category card
@@ -37,7 +37,7 @@ const Menu = () => {
       const categories = menuCategory?.filter(card => 
         card?.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory');
       
-      console.log("Filtered Categories:", categories);
+      
       setCategories(categories || []);
 
       // Find the actual menu items from the categories
