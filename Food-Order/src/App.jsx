@@ -12,7 +12,7 @@ const [userName, setUserName] = useState("Guest");
 
   useEffect(() => {
     const data = {
-      name:"Tanmay"
+      name:""
     }
     setUserName(data.name)
   },[])
