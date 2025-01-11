@@ -13,7 +13,10 @@ const Body = () => {
   const { List, loading, filteredRestaurants, setFilteredRestaurants } =
     useRestaurantdata();
 
-  const FilterAll = () => {
+  
+  
+  
+    const FilterAll = () => {
     const newDataList =
       List?.filter((data) => data?.info?.avgRating > 4.0) || [];
     setFilteredRestaurants(newDataList);

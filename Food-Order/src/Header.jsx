@@ -8,6 +8,7 @@ import { FaHome } from "react-icons/fa";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
+
   const cartItems = useSelector((store) => store.cart.items);
 
   const{ loggedInUser}= useContext(UserContext);
@@ -47,7 +48,7 @@ const Header = () => {
                 to="/cart"
                 className="group-hover:text-orange-600 transition-all duration-300 text-black"
               >
-                Cart- ({cartItems.length})
+                Cart({cartItems.length})
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:text-orange-600"></span>
               </Link>
             </li>
