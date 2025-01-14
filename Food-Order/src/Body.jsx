@@ -55,7 +55,7 @@ const Body = () => {
   return filteredRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="container w-full px-auto mt-9  mx-20 ">
+    <div className="container w-full px-auto mt-9  mx-20 bg-white ">
       <div className="text-2xl ml-[160px] font-bold text-[#02060c]  text-start  mt-28 w-fit  ">
         Restaurants with online food delivery
       </div>

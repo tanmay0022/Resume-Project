@@ -7,14 +7,21 @@ import About from './About'
 import Body from './Body.jsx'
 import Menu from './Menu'
 import Cart from './Cart'
+import Home from './Home'
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+
       {
-        path: '',
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/Menu',
         element: <Body />,
       },
       {
