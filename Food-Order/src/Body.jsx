@@ -55,7 +55,7 @@ const Body = () => {
   return filteredRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="container w-full px-auto mt-9  mx-20 bg-white ">
+    <div className="container w-full px-auto mt-9  mx-20 ">
       <div className="text-2xl ml-[160px] font-bold text-[#02060c]  text-start  mt-28 w-fit  ">
         Restaurants with online food delivery
       </div>
@@ -64,25 +64,25 @@ const Body = () => {
         <div className="flex gap-3 items-center flex-wrap my-6">
           <button
             onClick={FilterAll}
-            className="bg-white py-1   font-gilroy   text-gray-900  font-bold border-solid border-black rounded-2xl  px-3 text-[14px]  "
+            className="bg-gray-100 py-1   font-gilroy   text-gray-900  font-bold border-solid border-black rounded-2xl  px-3 text-[14px]"
           >
             Ratings 4.0+
           </button>
           <button
             onClick={FilterFastDelivery}
-            className="bg-white py-1 font-gilroy text-gray-900  font-bold border-solid border-black rounded-2xl px-3 text-[14px]"
+            className="bg-gray-100 py-1 font-gilroy text-gray-900  font-bold border-solid border-black rounded-2xl px-3 text-[14px]"
           >
             Fast Delivery
           </button>
           <button
             onClick={FilterBudget}
-            className="bg-white py-1 font-gilroy text-gray-900  font-bold border-solid border-black rounded-2xl px-3 text-[14px]"
+            className="bg-gray-100 py-1 font-gilroy text-gray-900  font-bold border-solid border-black rounded-2xl px-3 text-[14px]"
           >
             Budget Friendly
           </button>
           <button
             onClick={ResetFilter}
-            className="bg-white py-0 text-black font-bold border-solid border-black rounded-2xl px-3"
+            className="bg-gray-100 py-0 text-black font-bold border-solid border-black rounded-2xl px-3"
           >
             ⛌
           </button>
@@ -112,7 +112,7 @@ const Body = () => {
         </div>
       </div>
       <div className="mx-24 ">
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 max-w-full mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 max-w-full mx-auto text-white">
           {filteredRestaurants.map((data) => (
             <Link to={`/restaurant/${data?.info?.id}`} key={data?.info?.id}>
               <ResCard

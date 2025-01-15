@@ -51,26 +51,25 @@ const Menu = () => {
   
 
   return (
-   <div className=' w-screen  px-10 flex justify-items-center'>
-     <div className="min-h-screen w-[80%] flex  justify-center mx-auto  mt-24">
-      <div className="menu p-8 max-w-[80%] w-[100%] mx-auto  shadow-lg rounded-lg my-8">
-<div>
-<img 
-  className="w-[80%] h-52 object-cover rounded-t-lg flex justify-center mx-auto" 
-  src={`${CDN_URL}fl_lossy,f_auto,q_auto,w_1024/${restaurant?.cloudinaryImageId}`} 
-  alt={restaurant?.name}
-  onError={(e) => console.log('Image load error:', e)}
-/>
-
-</div>
-        <h1 className="text-2xl font-bold text-gray-800 mb-2 text-center mt-2">{restaurant?.name}</h1>
-        <div className="text-sm text-gray-600 mb-4 text-center">
+   <div className='w-full px-4 md:px-8 lg:px-10'>
+     <div className="min-h-screen w-full md:w-[90%] lg:w-[80%] flex justify-center mx-auto mt-20 md:mt-24">
+      <div className="menu p-4 md:p-6 lg:p-8 w-full md:max-w-[90%] lg:max-w-[80%] mx-auto shadow-lg rounded-lg my-4 md:my-8">
+        <div>
+          <img 
+            className="w-full md:w-[90%] lg:w-[80%] h-40 md:h-48 lg:h-52 object-cover rounded-t-lg flex justify-center mx-auto" 
+            src={`${CDN_URL}fl_lossy,f_auto,q_auto,w_1024/${restaurant?.cloudinaryImageId}`} 
+            alt={restaurant?.name}
+            onError={(e) => console.log('Image load error:', e)}
+          />
+        </div>
+        <h1 className="text-xl md:text-2xl font-bold text-gray-800 mb-2 text-center mt-4">{restaurant?.name}</h1>
+        <div className="text-xs md:text-sm text-gray-600 mb-4 text-center">
           <p>{restaurant?.cuisines?.join(", ")}</p>
           <p>{restaurant?.areaName}, {restaurant?.city}</p>
         </div>
-        <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center ">Menu</h2>
+        <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-4 text-center">Menu</h2>
         
-        <div>
+        <div className="space-y-4">
          {categories.map((category, index) => (
              <ResCategory key={index} data={category}/>
          ))}

@@ -4,7 +4,7 @@ const ResCard = ({ cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla
   const imageUrl = `https://media-assets.swiggy.com/swiggy/image/upload/${cloudinaryImageId}`;
 
   return (
-    <div className=" w-72  p-4 hover:scale-[0.98] transition-all  duration-300">
+    <div className=" w-72  p-4 hover:scale-[0.98] transition-all  duration-300 text-white">
       <div className="relative">
         <img 
           className="rounded-xl w-[98%] h-40 object-cover" 
@@ -27,8 +27,8 @@ const ResCard = ({ cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla
           <span className="text-gray-700">•</span>
           <span className="text-gray-700">{sla?.slaString}</span>
         </div>
-        <p className="text-gray-500 text-sm mt-1 truncate">{cuisines?.join(", ")}</p>
-        <p className="text-gray-500 text-sm">{costForTwo}</p>
+        <p className="text-black text-sm mt-1 truncate">{cuisines?.join(", ")}</p>
+        <p className="text-black text-sm">{costForTwo}</p>
       </div>
     </div>
   );
